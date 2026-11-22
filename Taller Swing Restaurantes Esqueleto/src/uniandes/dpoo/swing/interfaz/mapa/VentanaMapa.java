@@ -50,11 +50,32 @@ public class VentanaMapa extends JFrame implements ActionListener
     {
         this.ventanaPrincipal = ventanaPrincipal;
 
+        setLayout( new BorderLayout( ) );
+
         // Agrega el panel donde se muestra el mapa
-        // TODO completar
+        panelMapa = new PanelMapaVisualizar( );
+        panelMapa.actualizarMapa( restaurantes );
+        add( panelMapa, BorderLayout.CENTER );
 
         // Agrega el panel con los RadioButtons y los configura
-        // TODO completar
+        JPanel panelRadios = new JPanel( );
+        ButtonGroup grupo = new ButtonGroup( );
+
+        radioTodos = new JRadioButton( "Todos", true );
+        radioTodos.setActionCommand( TODOS );
+        radioTodos.addActionListener( this );
+        grupo.add( radioTodos );
+        panelRadios.add( radioTodos );
+
+        radioVisitados = new JRadioButton( "Visitados" );
+        radioVisitados.setActionCommand( VISITADOS );
+        radioVisitados.addActionListener( this );
+        grupo.add( radioVisitados );
+        panelRadios.add( radioVisitados );
+
+        add( panelRadios, BorderLayout.SOUTH );
+
+        setTitle( "Mapa de restaurantes" );
 
         // Termina de configurar la ventana y la muestra
         pack( );
